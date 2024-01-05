@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
+import NavBar from './components/NavBar';
 
 function Browse() {
   return (
-    <div className="">
-      <h1>Browse</h1>
-    </div>
+    <header>
+      <NavBar />
+    </header>
   );
 }
 
