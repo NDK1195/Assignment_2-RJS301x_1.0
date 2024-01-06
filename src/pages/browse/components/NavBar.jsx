@@ -2,7 +2,7 @@ import search from '/search.svg';
 
 export default function NavBar() {
   return (
-    <nav className='flex content-center justify-between p-5 bg-gray-400'>
+    <nav className='flex content-center justify-between p-5 sticky top-0 left-0'>
       <a href='/'>
         <h1 className='text-[#e50607] font-bold text-2xl'>Movie App</h1>
       </a>

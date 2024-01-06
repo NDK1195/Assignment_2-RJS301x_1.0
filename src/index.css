@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply bg-[#251f24] bg-opacity-70 px-9 py-1 text-lg text-white transition hover:bg-opacity-90;
+}
+.text-ellipsis-custom {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.custom-ellipsis {
+  @apply text-ellipsis-custom;
+}
