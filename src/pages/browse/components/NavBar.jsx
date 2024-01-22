@@ -2,28 +2,28 @@ import { useEffect, useState } from 'react';
 import search from '/search.svg';
 
 export default function NavBar() {
-  const [background, setBackground] = useState(false);
+  const [navBackground, setNavBackground] = useState(false);
 
   useEffect(() => {
-    function handleNavBarBackground() {
+    function handleChangeNavBackground() {
       if (window.scrollY > 100) {
-        setBackground(true);
+        setNavBackground(true);
       } else {
-        setBackground(false);
+        setNavBackground(false);
       }
     }
 
-    window.addEventListener('scroll', handleNavBarBackground);
+    window.addEventListener('scroll', handleChangeNavBackground);
 
     return () => {
-      window.removeEventListener('scroll', handleNavBarBackground);
+      window.removeEventListener('scroll', handleChangeNavBackground);
     };
   }, []);
 
   return (
     <nav
       className={`flex content-center justify-between p-5 sticky top-0 left-0 ${
-        background && 'bg-black'
+        navBackground && 'bg-black'
       }`}
     >
       <a href='/'>
