@@ -12,6 +12,31 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .custom-ellipsis {
   @apply text-ellipsis-custom;
+}
+
+/* SCROLLBAR */
+/* width height*/
+::-webkit-scrollbar {
+  height: 5px;
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #11171a;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #292929;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
 }

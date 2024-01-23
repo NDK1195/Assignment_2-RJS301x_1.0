@@ -5,7 +5,7 @@ import MovieList from './components/MovieList';
 
 function Browse() {
   return (
-    <header>
+    <div className='bg-[#111] pb-10'>
       <NavBar />
       <Banner />
       <MovieList
@@ -19,7 +19,7 @@ function Browse() {
       <MovieList title='Kinh dị' apiEndpoint={requests.fetchHorrorMovies} />
       <MovieList title='Lãng mạn' apiEndpoint={requests.fetchRomanceMovies} />
       <MovieList title='Tài liệu' apiEndpoint={requests.fetchDocumentaries} />
-    </header>
+    </div>
   );
 }
 
