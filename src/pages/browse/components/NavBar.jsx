@@ -5,6 +5,7 @@ export default function NavBar() {
   const [navBackground, setNavBackground] = useState(false);
 
   useEffect(() => {
+    // handle change navbar background when scroll over 100px
     function handleChangeNavBackground() {
       if (window.scrollY > 100) {
         setNavBackground(true);
@@ -22,7 +23,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`flex content-center justify-between p-5 sticky top-0 left-0 ${
+      className={`flex content-center justify-between p-5 sticky top-0 left-0 z-10 ${
         navBackground && 'bg-black'
       }`}
     >
