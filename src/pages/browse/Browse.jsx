@@ -1,11 +1,11 @@
-import NavBar from './components/NavBar';
+import NavBar from '../../components/NavBar';
 import Banner from './components/Banner';
-import { requests } from '../../api-endpoint';
 import MovieList from './components/MovieList';
+import { requests } from '../../api-endpoint';
 
 function Browse() {
   return (
-    <div className='bg-[#111] pb-10'>
+    <div className='bg-[#111] pb-5'>
       <NavBar />
       <Banner />
       <MovieList
