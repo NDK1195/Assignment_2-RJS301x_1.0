@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MovieDetail from '../../../components/MovieDetail';
 
 export default function ResultList(props) {
   const [data, setData] = useState([]);
@@ -29,6 +30,9 @@ export default function ResultList(props) {
       <h2 className='text-white font-bold text-2xl mb-5'>Search Result</h2>
       <div className='grid grid-cols-auto-fit gap-3 bg-[#111]'>
         {resultList}
+      </div>
+      <div className='relative'>
+        <MovieDetail />
       </div>
     </div>
   );

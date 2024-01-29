@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import MovieDetail from '../../../components/MovieDetail';
 
 export default function MovieList(props) {
   const [data, setData] = useState([]);
+  const [isShowDetail, setIsShowDetail] = useState(false);
+  const [movieDetail, setMovieDetail] = useState({});
   const movieListWrapper = useRef();
 
   useEffect(() => {
@@ -27,11 +30,16 @@ export default function MovieList(props) {
     async function fetchData() {
       const response = await fetch(props.apiEndpoint);
       const responseData = await response.json();
-
+      console.log(responseData);
       setData(responseData.results);
     }
     fetchData();
   }, []);
+
+  function handleGetDetail(movie) {
+    setIsShowDetail(!isShowDetail);
+    setMovieDetail(movie);
+  }
 
   const movieListTitle = props.title !== 'Original' && (
     <h2 className='text-white font-bold text-2xl mb-5'>{props.title}</h2>
@@ -48,19 +56,25 @@ export default function MovieList(props) {
           : movie['backdrop_path']
       }`}
       alt='Movie backdrop'
-      className='w-52 hover:scale-110 p-2 transition-all hover:cursor-pointer'
+      className='w-52 hover:scale-110 p-2 transition-all cursor-pointer'
+      onClick={() => handleGetDetail(movie)}
     />
   ));
 
   return (
-    <div className='px-5 items-center'>
-      {movieListTitle}
-      <div
-        className='flex overflow-x-auto overflow-y-hidden mb-12 pb-2 items-center'
-        ref={movieListWrapper}
-      >
-        {movieList}
+    <>
+      <div className='px-5 items-center mt-10'>
+        {movieListTitle}
+        <div
+          className='flex overflow-x-auto overflow-y-hidden mb-4 pb-2 items-center '
+          ref={movieListWrapper}
+        >
+          {movieList}
+        </div>
       </div>
-    </div>
+      <div className='relative'>
+        {isShowDetail && <MovieDetail movieData={movieDetail} />}
+      </div>
+    </>
   );
 }
