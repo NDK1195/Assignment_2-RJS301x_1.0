@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import MovieDetail from '../../../components/MovieDetail';
 
 export default function MovieList(props) {
   const [data, setData] = useState([]);
   const [isShowDetail, setIsShowDetail] = useState(false);
   const [movieDetail, setMovieDetail] = useState({});
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const movieListWrapper = useRef();
 
   useEffect(() => {
@@ -30,15 +31,22 @@ export default function MovieList(props) {
     async function fetchData() {
       const response = await fetch(props.apiEndpoint);
       const responseData = await response.json();
-      console.log(responseData);
+
       setData(responseData.results);
     }
     fetchData();
   }, []);
 
   function handleGetDetail(movie) {
-    setIsShowDetail(!isShowDetail);
     setMovieDetail(movie);
+
+    // check if click on same movie
+    if (movie.id === selectedMovie?.id) {
+      setIsShowDetail(!isShowDetail);
+    } else {
+      setSelectedMovie(movie);
+      setIsShowDetail(true);
+    }
   }
 
   const movieListTitle = props.title !== 'Original' && (
@@ -47,19 +55,33 @@ export default function MovieList(props) {
 
   const imageURL = `https://image.tmdb.org/t/p/original/`;
 
-  const movieList = data.map(movie => (
-    <img
-      key={movie.id}
-      src={`${imageURL}/${
-        props.title === 'Original'
-          ? movie['poster_path']
-          : movie['backdrop_path']
-      }`}
-      alt='Movie backdrop'
-      className='w-52 hover:scale-110 p-2 transition-all cursor-pointer'
-      onClick={() => handleGetDetail(movie)}
-    />
-  ));
+  const movieList = data.map(movie => {
+    const ref = createRef();
+
+    function handleScrollIntoTopOfModal() {
+      ref.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+
+    return (
+      <img
+        key={movie.id}
+        src={`${imageURL}/${
+          props.title === 'Original'
+            ? movie['poster_path']
+            : movie['backdrop_path']
+        }`}
+        alt='Movie backdrop'
+        className='w-52 hover:scale-110 p-2 transition-all cursor-pointer'
+        onClick={() => {
+          handleGetDetail(movie);
+          handleScrollIntoTopOfModal();
+        }}
+        ref={ref}
+      />
+    );
+  });
 
   return (
     <>

@@ -1,13 +1,4 @@
 import { useEffect, useState } from 'react';
-import YouTube from 'react-youtube';
-
-const opts = {
-  height: '500px',
-  width: '100%',
-  playerVars: {
-    autoplay: 0,
-  },
-};
 
 export default function MovieDetail(props) {
   const [movieVideo, setMovieVideo] = useState([]);
@@ -28,18 +19,23 @@ export default function MovieDetail(props) {
       setMovieVideo(result);
     }
     fetchData();
-  }, []);
+  }, [props.movieData.id]);
 
-  let videoContent;
+  let videoContent = '';
 
   if (movieVideo.length > 0) {
-    videoContent = <YouTube videoId={movieVideo[0].key} opts={opts} />;
+    videoContent = (
+      <iframe
+        width='100%'
+        height='500'
+        src={`https://www.youtube.com/embed/${movieVideo[0].key}`}
+      ></iframe>
+    );
   } else {
     videoContent = (
       <img
         src={`https://image.tmdb.org/t/p/original/${props.movieData['backdrop_path']}`}
         alt='Movie backdrop'
-        className='inline-block w-full'
       />
     );
   }
@@ -48,7 +44,9 @@ export default function MovieDetail(props) {
     <div className='absolute top-0 left-0 w-full bg-[#272727] text-[#fefaf4] h-[540px]'>
       <div className='grid grid-cols-2 px-8 py-4 gap-8'>
         <div className=''>
-          <h3 className='font-bold text-2xl mb-4'>{props.movieData.title}</h3>
+          <h3 className='font-bold text-2xl mb-4'>
+            {props.movieData['original_name'] || props.movieData.title}
+          </h3>
           <hr className='mb-4' />
           <p className='text-lg font-bold'>
             Release Date: {props.movieData['release_date']}
