@@ -12,7 +12,7 @@ const Search = () => {
   }
 
   return (
-    <div className='bg-[#111]'>
+    <div>
       <NavBar />
       <SearchForm onSearchClick={handleSearchClick} />
       <ResultList query={query} apiEndpoint={requests.fetchSearch} />

@@ -5,7 +5,7 @@ import { requests } from '../../api-endpoint';
 
 function Browse() {
   return (
-    <div className='bg-[#111] pb-5'>
+    <div className='pb-5'>
       <NavBar />
       <Banner />
       <MovieList

@@ -59,7 +59,7 @@ export default function MovieList(props) {
     const ref = createRef();
 
     function handleScrollIntoTopOfModal() {
-      ref.current.scrollIntoView({
+      ref.current.scrollIntoView(true, {
         behavior: 'smooth',
       });
     }
@@ -88,7 +88,7 @@ export default function MovieList(props) {
       <div className='px-5 items-center mt-10'>
         {movieListTitle}
         <div
-          className='flex overflow-x-auto overflow-y-hidden mb-4 pb-2 items-center '
+          className='flex overflow-x-auto overflow-y-hidden pb-1 items-center '
           ref={movieListWrapper}
         >
           {movieList}

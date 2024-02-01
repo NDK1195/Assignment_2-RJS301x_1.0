@@ -41,9 +41,9 @@ export default function MovieDetail(props) {
   }
 
   return (
-    <div className='absolute top-0 left-0 w-full bg-[#272727] text-[#fefaf4] h-[540px]'>
+    <div className='absolute left-0 w-full bg-[#272727] text-[#fefaf4] h-[540px] mt-2'>
       <div className='grid grid-cols-2 px-8 py-4 gap-8'>
-        <div className=''>
+        <div>
           <h3 className='font-bold text-2xl mb-4'>
             {props.movieData['original_name'] || props.movieData.title}
           </h3>
@@ -56,8 +56,11 @@ export default function MovieDetail(props) {
           </p>
           <p className='mt-3 text-justify'>{props.movieData.overview}</p>
         </div>
-        <div className=''>{videoContent}</div>
+        {/* left content */}
+        <div>{videoContent}</div>
+        {/* right content - video */}
       </div>
+      {/* grid container */}
     </div>
   );
 }
