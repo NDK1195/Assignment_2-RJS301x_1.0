@@ -48,14 +48,14 @@ export default function ResultList(props) {
             alt='Movie poster'
             className='w-48 hover:scale-105 transition-all hover:cursor-pointer'
             onClick={() => {
-              handleGetDetail(movie);
               handleScrollIntoTopOfModal();
+              handleGetDetail(movie);
             }}
             ref={ref}
           />
-          {selectedMovie === movie && isShowDetail && (
+          {selectedMovie === movie && isShowDetail ? (
             <MovieDetail movieData={movieDetail} />
-          )}
+          ) : null}
         </div>
       </Fragment>
     );

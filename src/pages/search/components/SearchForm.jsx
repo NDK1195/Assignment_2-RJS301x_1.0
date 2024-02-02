@@ -16,7 +16,7 @@ export default function SearchForm(props) {
 
   function handleReset(event) {
     event.preventDefault();
-    props.onSearchClick(' ');
+    props.onSearchClick('');
 
     inputSearch.current.value = '';
   }

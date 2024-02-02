@@ -10,7 +10,7 @@ export default function MovieDetail(props) {
       );
       const responseData = await response.json();
 
-      // get trailer or teaser from response data
+      // filter trailer or teaser from response data
       const result = responseData.results.filter(
         video =>
           video.site === 'YouTube' &&
@@ -27,7 +27,7 @@ export default function MovieDetail(props) {
     videoContent = (
       <iframe
         width='100%'
-        height='500'
+        height='390'
         src={`https://www.youtube.com/embed/${movieVideo[0].key}`}
       ></iframe>
     );
@@ -41,7 +41,7 @@ export default function MovieDetail(props) {
   }
 
   return (
-    <div className='absolute left-0 w-full bg-[#272727] text-[#fefaf4] h-[540px] mt-2'>
+    <div className='absolute left-0 w-full bg-[#272727] text-[#fefaf4] h-[420px] mt-2 '>
       <div className='grid grid-cols-2 px-8 py-4 gap-8'>
         <div>
           <h3 className='font-bold text-2xl mb-4'>

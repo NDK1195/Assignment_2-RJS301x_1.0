@@ -41,6 +41,8 @@ export default function MovieList(props) {
     setMovieDetail(movie);
 
     // check if click on same movie
+    // if click on same movie, toggle movie detail modal
+    // if not,
     if (movie.id === selectedMovie?.id) {
       setIsShowDetail(!isShowDetail);
     } else {
@@ -49,9 +51,10 @@ export default function MovieList(props) {
     }
   }
 
-  const movieListTitle = props.title !== 'Original' && (
-    <h2 className='text-white font-bold text-2xl mb-5'>{props.title}</h2>
-  );
+  const movieListTitle =
+    props.title !== 'Original' ? (
+      <h2 className='text-white font-bold text-2xl mb-5'>{props.title}</h2>
+    ) : null;
 
   const imageURL = `https://image.tmdb.org/t/p/original/`;
 
@@ -59,9 +62,7 @@ export default function MovieList(props) {
     const ref = createRef();
 
     function handleScrollIntoTopOfModal() {
-      ref.current.scrollIntoView(true, {
-        behavior: 'smooth',
-      });
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     return (
@@ -75,8 +76,8 @@ export default function MovieList(props) {
         alt='Movie backdrop'
         className='w-52 hover:scale-110 p-2 transition-all cursor-pointer'
         onClick={() => {
-          handleGetDetail(movie);
           handleScrollIntoTopOfModal();
+          handleGetDetail(movie);
         }}
         ref={ref}
       />
@@ -95,7 +96,7 @@ export default function MovieList(props) {
         </div>
       </div>
       <div className='relative'>
-        {isShowDetail && <MovieDetail movieData={movieDetail} />}
+        {isShowDetail ? <MovieDetail movieData={movieDetail} /> : null}
       </div>
     </>
   );
