@@ -6,7 +6,7 @@ export default function SearchForm(props) {
 
   function handleSearch(event) {
     event.preventDefault();
-    const searchQuery = inputSearch.current.value;
+    const searchQuery = inputSearch.current.value.trim();
 
     // pass data to parent component via props
     props.onSearchClick(searchQuery);

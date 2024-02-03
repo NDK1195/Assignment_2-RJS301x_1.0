@@ -42,7 +42,7 @@ export default function MovieList(props) {
 
     // check if click on same movie
     // if click on same movie, toggle movie detail modal
-    // if not,
+    // if not, keep modal, set content to clicked movie
     if (movie.id === selectedMovie?.id) {
       setIsShowDetail(!isShowDetail);
     } else {
@@ -74,7 +74,7 @@ export default function MovieList(props) {
             : movie['backdrop_path']
         }`}
         alt='Movie backdrop'
-        className='w-52 hover:scale-110 p-2 transition-all cursor-pointer'
+        className='w-52 hover:scale-110 p-2 transition-all hover:cursor-pointer'
         onClick={() => {
           handleScrollIntoTopOfModal();
           handleGetDetail(movie);

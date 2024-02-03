@@ -21,6 +21,8 @@ export default function ResultList(props) {
     setMovieDetail(movie);
 
     // check if click on same movie
+    // if click on same movie, toggle movie detail modal
+    // if not, keep modal, set content to clicked movie
     if (movie.id === selectedMovie?.id) {
       setIsShowDetail(!isShowDetail);
     } else {
@@ -42,11 +44,11 @@ export default function ResultList(props) {
 
     return (
       <Fragment key={movie.id}>
-        <div>
+        <div className='w-48'>
           <img
             src={`${imageURL}/${movie['poster_path']}`}
             alt='Movie poster'
-            className='w-48 hover:scale-105 transition-all hover:cursor-pointer'
+            className='w-full hover:scale-105 transition-all hover:cursor-pointer'
             onClick={() => {
               handleScrollIntoTopOfModal();
               handleGetDetail(movie);
@@ -66,6 +68,11 @@ export default function ResultList(props) {
       <div className='px-5 h-screen'>
         <h2 className='text-white font-bold text-2xl mb-5'>Search Result</h2>
         <div className='grid grid-cols-auto-fit gap-3 bg-[#111] relative'>
+          {data.length === 0 ? (
+            <h3 className='text-center text-white text-2xl font-bold'>
+              No result found
+            </h3>
+          ) : null}
           {resultList}
         </div>
       </div>

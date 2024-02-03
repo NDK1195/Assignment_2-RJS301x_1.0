@@ -23,7 +23,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`flex content-center justify-between p-5 sticky top-0 left-0 z-10 ${
+      className={`flex content-center justify-between p-5 sticky top-0 left-0 z-10 transition-all ${
         navBackground && 'bg-black'
       }`}
     >

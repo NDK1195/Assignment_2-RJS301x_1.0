@@ -21,7 +21,7 @@ export default function MovieDetail(props) {
     fetchData();
   }, [props.movieData.id]);
 
-  let videoContent = '';
+  let videoContent;
 
   if (movieVideo.length > 0) {
     videoContent = (
@@ -36,13 +36,14 @@ export default function MovieDetail(props) {
       <img
         src={`https://image.tmdb.org/t/p/original/${props.movieData['backdrop_path']}`}
         alt='Movie backdrop'
+        className='object-cover h-full w-full'
       />
     );
   }
 
   return (
     <div className='absolute left-0 w-full bg-[#272727] text-[#fefaf4] h-[420px] mt-2 '>
-      <div className='grid grid-cols-2 px-8 py-4 gap-8'>
+      <div className='grid grid-cols-2 px-8 py-4 gap-10 h-full grid-rows-1'>
         <div>
           <h3 className='font-bold text-2xl mb-4'>
             {props.movieData['original_name'] || props.movieData.title}
